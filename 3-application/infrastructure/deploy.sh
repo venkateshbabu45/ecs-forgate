@@ -2,12 +2,12 @@
 
 SERVICE_NAME="springbootapp"
 SERVICE_TAG="v1"
-ECR_REPO_URL="351555610119.dkr.ecr.eu-west-1.amazonaws.com/${SERVICE_NAME}"
+ECR_REPO_URL="508607970941.dkr.ecr.us-east-1.amazonaws.com/${SERVICE_NAME}"
 
 if [ "$1" = "build" ];then
     echo "Building the application..."
     cd ..
-    sh mvnw clean install
+    sh mvn clean install
 elif [ "$1" = "dockerize" ];then
     find ../target/ -type f \( -name "*.jar" -not -name "*sources.jar" \) -exec cp {} ../infrastructure/$SERVICE_NAME.jar \;
     $(aws ecr get-login --no-include-email --region eu-west-1)
